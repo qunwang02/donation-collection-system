@@ -1,42 +1,47 @@
-# 护持项目收集系统
+# 护持项目信息收集系统
 
-一个完整的护持项目数据收集和管理系统，包含前端数据收集页面和后端API服务器。
+基于Node.js + MongoDB + Express构建的信息收集和管理系统，支持数据收集、存储、管理和分析。
 
-## 功能特点
+## 功能特性
 
-### 前端页面
-1. **数据收集页面** (`index.html`)
-   - 填写护持项目信息
-   - 自动计算金额（新台币/人民币）
-   - 本地存储数据
-   - 提交到服务器
-   - 数据导出（CSV）
+### 前端收集页面 (`index.html`)
+- 响应式表格设计，支持移动设备
+- 本地数据存储（浏览器LocalStorage）
+- 数据验证和自动填充
+- 服务器同步功能
+- CSV导出功能
+- 实时数据统计
 
-2. **数据查看页面** (`view-data.html`)
-   - 查看所有提交的数据
-   - 筛选和搜索功能
-   - 数据统计和分析
-   - 导出功能（CSV、Excel、PDF）
+### 后端API (`server/`)
+- RESTful API设计
+- MongoDB数据存储
+- 数据验证和错误处理
+- 分页和筛选支持
+- 数据统计和分析
+- 安全防护（CORS、速率限制、Helmet）
 
-### 后端API服务器
-- RESTful API接口
-- 数据持久化存储
-- 健康检查端点
-- 数据统计功能
-- 错误处理和日志
+### 管理后台 (`admin.html`)
+- 数据查看和筛选
+- 详细数据查看
+- 数据统计和图表
+- CSV/JSON导出
+- 操作日志
+- 响应式设计
 
-## 技术栈
+## 部署步骤
 
-- **前端**: HTML5, CSS3, JavaScript (ES6+)
-- **后端**: Node.js, Express.js
-- **存储**: JSON文件存储（可升级到数据库）
-- **部署**: 支持Render、Heroku、Vercel等平台
+### 1. 本地开发环境
+```bash
+# 克隆项目
+git clone <repository-url>
+cd donation-collection-system
 
-## 快速开始
+# 安装依赖
+npm install
 
-### 本地运行
+# 配置环境变量
+cp .env.example .env
+# 编辑.env文件，设置MongoDB连接字符串等
 
-1. **克隆项目**
-   ```bash
-   git clone https://github.com/yourusername/donation-collection-system.git
-   cd donation-collection-system/server
+# 启动开发服务器
+npm run dev

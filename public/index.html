@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -50,11 +51,6 @@
             margin-top: 5px;
             color: #e74c3c;
             font-weight: bold;
-            background-color: #fff5f5;
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            border: 1px solid #ffcccc;
         }
         
         .instructions {
@@ -68,41 +64,32 @@
         .instructions h3 {
             color: #3498db;
             margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
         
         .table-container {
             overflow-x: auto;
             margin-bottom: 30px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 5px;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 0;
+            margin-bottom: 20px;
         }
         
         th {
             background-color: #2c3e50;
             color: white;
             text-align: center;
-            padding: 14px 10px;
+            padding: 12px 8px;
             font-weight: 600;
-            border: 1px solid #3a4a5d;
+            border: 1px solid #ddd;
             white-space: nowrap;
-            position: sticky;
-            top: 0;
-            z-index: 10;
         }
         
         td {
-            padding: 12px 10px;
-            border: 1px solid #e0e0e0;
+            padding: 10px 8px;
+            border: 1px solid #ddd;
             vertical-align: top;
         }
         
@@ -116,33 +103,32 @@
         
         .form-control {
             width: 100%;
-            padding: 10px 12px;
+            padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
             font-family: inherit;
-            transition: all 0.3s;
         }
         
         .form-control:focus {
             outline: none;
             border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
         }
         
         .actions {
             display: flex;
-            justify-content: flex-start;
-            gap: 15px;
+            justify-content: space-between;
             margin-top: 10px;
             margin-bottom: 20px;
             flex-wrap: wrap;
+            gap: 10px;
         }
         
         .btn {
-            padding: 12px 24px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 6px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
@@ -150,12 +136,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            min-height: 44px;
         }
         
         .btn i {
-            font-size: 16px;
+            margin-right: 5px;
         }
         
         .btn-primary {
@@ -165,8 +149,6 @@
         
         .btn-primary:hover {
             background-color: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(41, 128, 185, 0.3);
         }
         
         .btn-success {
@@ -176,8 +158,6 @@
         
         .btn-success:hover {
             background-color: #27ae60;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
         }
         
         .btn-danger {
@@ -187,8 +167,6 @@
         
         .btn-danger:hover {
             background-color: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
         }
         
         .btn-secondary {
@@ -198,33 +176,28 @@
         
         .btn-secondary:hover {
             background-color: #7f8c8d;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(149, 165, 166, 0.3);
         }
         
         .row-controls {
             display: flex;
-            gap: 8px;
+            gap: 5px;
             justify-content: center;
         }
         
         .btn-sm {
-            padding: 8px 12px;
-            font-size: 13px;
-            min-height: 36px;
+            padding: 5px 10px;
+            font-size: 12px;
         }
         
         .amount-display {
             font-weight: bold;
             color: #2c3e50;
-            font-size: 14px;
         }
         
         .rmb-display {
             color: #e74c3c;
-            font-size: 13px;
-            margin-top: 5px;
-            font-weight: 500;
+            font-size: 0.9em;
+            margin-top: 3px;
         }
         
         .project-option {
@@ -246,47 +219,18 @@
             color: #7f8c8d;
             font-size: 14px;
             margin-top: 20px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
         }
         
         .data-summary {
             background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 5px;
             margin-top: 20px;
-            border: 1px solid #e0e0e0;
         }
         
         .data-summary h4 {
             color: #2c3e50;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 18px;
-        }
-        
-        .data-summary p {
-            margin-bottom: 8px;
-            padding: 8px 0;
-            border-bottom: 1px dashed #ddd;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .data-summary p:last-child {
-            border-bottom: none;
-        }
-        
-        .summary-label {
-            color: #666;
-        }
-        
-        .summary-value {
-            font-weight: bold;
-            color: #2c3e50;
+            margin-bottom: 10px;
         }
         
         @media (max-width: 768px) {
@@ -301,20 +245,15 @@
             
             .btn {
                 width: 100%;
-                justify-content: center;
             }
             
             th, td {
-                padding: 10px 8px;
-                font-size: 13px;
+                padding: 8px 5px;
+                font-size: 14px;
             }
             
             table {
                 font-size: 13px;
-            }
-            
-            h1 {
-                font-size: 24px;
             }
         }
         
@@ -323,15 +262,11 @@
         }
         
         .server-status {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 6px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
             text-align: center;
             font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
         }
         
         .status-connected {
@@ -354,36 +289,30 @@
         
         .config-panel {
             background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 5px;
             margin-bottom: 20px;
             border-left: 4px solid #6c757d;
-            border: 1px solid #dee2e6;
         }
         
         .config-panel h3 {
             color: #495057;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 10px;
         }
         
         .config-input {
             display: flex;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             flex-wrap: wrap;
-            align-items: center;
         }
         
         .config-input input {
             flex: 1;
             min-width: 250px;
-            padding: 12px;
+            padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 14px;
         }
         
         .btn-warning {
@@ -393,8 +322,6 @@
         
         .btn-warning:hover {
             background-color: #e0a800;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
         }
         
         .btn-info {
@@ -404,8 +331,6 @@
         
         .btn-info:hover {
             background-color: #138496;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3);
         }
         
         .modal {
@@ -417,28 +342,16 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
         
         .modal-content {
             background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         
         .modal-header {
@@ -446,25 +359,17 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e0e0e0;
         }
         
         .modal-title {
             font-size: 20px;
             color: #2c3e50;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
         
         .close-modal {
-            font-size: 28px;
+            font-size: 24px;
             cursor: pointer;
             color: #7f8c8d;
-            transition: color 0.3s;
-            line-height: 1;
-            padding: 0 5px;
         }
         
         .close-modal:hover {
@@ -472,36 +377,18 @@
         }
         
         .modal-body {
-            margin-bottom: 25px;
-        }
-        
-        .modal-body label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #495057;
-        }
-        
-        .modal-body small {
-            display: block;
-            margin-top: 5px;
-            color: #6c757d;
-            font-size: 13px;
+            margin-bottom: 20px;
         }
         
         .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
+            text-align: right;
         }
         
         .log-panel {
             background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
             border: 1px solid #dee2e6;
             max-height: 200px;
             overflow-y: auto;
@@ -509,26 +396,14 @@
         
         .log-panel h4 {
             color: #495057;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
+            margin-bottom: 10px;
         }
         
         .log-entry {
-            padding: 8px 0;
+            padding: 5px 0;
             border-bottom: 1px solid #eee;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 13px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        
-        .log-time {
-            color: #6c757d;
-            min-width: 70px;
+            font-family: monospace;
+            font-size: 12px;
         }
         
         .log-success {
@@ -549,97 +424,20 @@
         
         textarea.method-textarea {
             resize: vertical;
-            min-height: 100px;
-            font-size: 13px;
-            line-height: 1.5;
+            min-height: 80px;
         }
         
         textarea.content-textarea {
             resize: vertical;
-            min-height: 100px;
-            font-size: 13px;
-            line-height: 1.5;
+            min-height: 80px;
         }
         
         .sync-status {
             margin-top: 10px;
-            padding: 12px;
-            border-radius: 6px;
+            padding: 8px;
+            border-radius: 4px;
             text-align: center;
             font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .data-count-badge {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            margin-left: 5px;
-            font-weight: bold;
-        }
-        
-        .status-indicator {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-        
-        .status-indicator.connected {
-            background-color: #2ecc71;
-            box-shadow: 0 0 5px #2ecc71;
-        }
-        
-        .status-indicator.disconnected {
-            background-color: #e74c3c;
-        }
-        
-        .status-indicator.connecting {
-            background-color: #f39c12;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
-        }
-        
-        .input-with-icon {
-            position: relative;
-        }
-        
-        .input-with-icon i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6c757d;
-        }
-        
-        .input-with-icon input {
-            padding-left: 35px;
-        }
-        
-        .validation-error {
-            border-color: #e74c3c !important;
-            background-color: #fff5f5;
-        }
-        
-        .validation-message {
-            color: #e74c3c;
-            font-size: 12px;
-            margin-top: 3px;
-            display: none;
-        }
-        
-        .required-field::after {
-            content: " *";
-            color: #e74c3c;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -649,13 +447,9 @@
         <header>
             <h1>护持项目收集表</h1>
             <p class="subtitle">请填写以下信息，支持本地保存与服务器同步</p>
-            <p class="exchange-rate">
-                <i class="fas fa-exchange-alt"></i> 汇率: 1人民币 ≈ 4.2新台币
-            </p>
+            <p class="exchange-rate">汇率: 1人民币 ≈ 4.2新台币</p>
             <div id="serverStatus" class="server-status status-disconnected">
-                <span class="status-indicator disconnected"></span>
-                <i class="fas fa-server"></i> 
-                <span>服务器: 未连接</span>
+                <i class="fas fa-server"></i> 服务器: 未连接
             </div>
         </header>
         
@@ -663,10 +457,7 @@
         <div class="config-panel" id="configPanel">
             <h3><i class="fas fa-cog"></i> 服务器设置</h3>
             <div class="config-input">
-                <div class="input-with-icon" style="flex: 1; min-width: 250px;">
-                    <i class="fas fa-link"></i>
-                    <input type="text" id="serverUrl" placeholder="服务器地址 (例如: https://xinchunqifu.onrender.com)" value="https://xinchunqifu.onrender.com">
-                </div>
+                <input type="text" id="serverUrl" placeholder="服务器地址 (例如: https://xinchunqifu.onrender.com)" value="https://xinchunqifu.onrender.com">
                 <button id="testConnection" class="btn btn-warning">
                     <i class="fas fa-plug"></i> 测试连接
                 </button>
@@ -674,21 +465,15 @@
                     <i class="fas fa-sliders-h"></i> 高级设置
                 </button>
             </div>
-            <div id="connectionInfo" style="font-size: 13px; color: #6c757d; margin-top: 5px;"></div>
+            <div id="connectionInfo" style="font-size: 12px; color: #6c757d;"></div>
         </div>
         
         <!-- 操作日志面板 -->
         <div class="log-panel" id="logPanel">
-            <h4><i class="fas fa-clipboard-list"></i> 操作日志 <span class="data-count-badge" id="logCount">2</span></h4>
+            <h4><i class="fas fa-clipboard-list"></i> 操作日志</h4>
             <div id="logContent">
-                <div class="log-entry log-info">
-                    <span class="log-time">系统</span>
-                    <span>系统初始化完成</span>
-                </div>
-                <div class="log-entry log-info">
-                    <span class="log-time">系统</span>
-                    <span>等待连接服务器...</span>
-                </div>
+                <div class="log-entry log-info">系统初始化完成</div>
+                <div class="log-entry log-info">等待连接服务器...</div>
             </div>
         </div>
         
@@ -706,13 +491,10 @@
                 <i class="fas fa-plus"></i> 添加新行
             </button>
             <button id="saveData" class="btn btn-success">
-                <i class="fas fa-save"></i> 保存到本地
+                <i class="fas fa-save"></i> 保存数据到本地
             </button>
             <button id="syncData" class="btn btn-info" disabled>
                 <i class="fas fa-sync-alt"></i> 同步到服务器
-            </button>
-            <button id="exportCSV" class="btn btn-secondary">
-                <i class="fas fa-file-csv"></i> 导出CSV
             </button>
         </div>
         
@@ -722,8 +504,8 @@
                 <thead>
                     <tr>
                         <th width="5%">序号</th>
-                        <th width="12%"><span class="required-field">姓名</span></th>
-                        <th width="18%"><span class="required-field">护持项目</span></th>
+                        <th width="12%">姓名</th>
+                        <th width="18%">护持项目</th>
                         <th width="22%">祈福方式</th>
                         <th width="12%">护持金额<br>(新台币)<br>≈人民币</th>
                         <th width="15%">祈福内容</th>
@@ -739,11 +521,14 @@
         </div>
         
         <div class="footer-actions">
+            <button id="exportCSV" class="btn btn-secondary">
+                <i class="fas fa-file-csv"></i> 导出为CSV文件
+            </button>
             <button id="loadData" class="btn btn-secondary">
                 <i class="fas fa-folder-open"></i> 加载本地数据
             </button>
             <button id="submitAll" class="btn btn-warning" disabled>
-                <i class="fas fa-cloud-upload-alt"></i> 提交所有数据
+                <i class="fas fa-cloud-upload-alt"></i> 提交所有数据到服务器
             </button>
             <button id="clearAll" class="btn btn-danger">
                 <i class="fas fa-trash"></i> 清空所有数据
@@ -752,28 +537,11 @@
         
         <div class="data-summary">
             <h4><i class="fas fa-chart-bar"></i> 数据统计</h4>
-            <p>
-                <span class="summary-label">总记录数:</span>
-                <span class="summary-value" id="totalRecords">0</span>
-            </p>
-            <p>
-                <span class="summary-label">总护持金额(新台币):</span>
-                <span class="summary-value" id="totalAmountTWD">NT$ 0</span>
-            </p>
-            <p>
-                <span class="summary-label">总护持金额(人民币):</span>
-                <span class="summary-value" id="totalAmountRMB">¥ 0</span>
-            </p>
-            <p>
-                <span class="summary-label">服务器同步状态:</span>
-                <span class="summary-value" id="syncStatus">未同步</span>
-            </p>
-            <div id="syncDetails" class="sync-status" style="margin-top: 15px; font-size: 13px;"></div>
-        </div>
-        
-        <div class="footer-note">
-            <i class="fas fa-exclamation-circle"></i> 
-            提示：数据会保存在本地浏览器中，清空浏览器缓存前请确保已导出或同步数据。
+            <p>总记录数: <span id="totalRecords">0</span> 条</p>
+            <p>总护持金额(新台币): <span id="totalAmountTWD">0</span></p>
+            <p>总护持金额(人民币): <span id="totalAmountRMB">0</span></p>
+            <p>服务器同步状态: <span id="syncStatus">未同步</span></p>
+            <div id="syncDetails" class="sync-status"></div>
         </div>
     </div>
     
@@ -785,18 +553,13 @@
                 <div class="close-modal" id="closeModal">&times;</div>
             </div>
             <div class="modal-body">
-                <div style="margin-bottom: 20px;">
+                <div style="margin-bottom: 15px;">
                     <label>API端点配置:</label>
                     <input type="text" id="apiSubmit" class="form-control" placeholder="提交数据API端点" value="/api/donations">
                     <small>用于提交数据的API路径</small>
                 </div>
-                <div style="margin-bottom: 20px;">
-                    <label>同步间隔(分钟):</label>
-                    <input type="number" id="syncInterval" class="form-control" placeholder="自动同步间隔" value="5" min="0" max="60">
-                    <small>自动同步的时间间隔，设为0禁用自动同步</small>
-                </div>
-                <div style="margin-bottom: 20px;">
-                    <label>超时时间(秒):</label>
+                <div style="margin-bottom: 15px;">
+                    <label>请求超时时间(秒):</label>
                     <input type="number" id="timeout" class="form-control" placeholder="请求超时时间" value="30" min="5" max="120">
                 </div>
                 <div>
@@ -805,8 +568,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="cancelConfig" class="btn btn-secondary">取消</button>
                 <button id="saveConfig" class="btn btn-success">保存配置</button>
+                <button id="cancelConfig" class="btn btn-secondary">取消</button>
             </div>
         </div>
     </div>
@@ -816,23 +579,20 @@
         const EXCHANGE_RATE = 4.2;
         
         // 服务器配置（可从本地存储加载）
-		let serverConfig = {
-			serverUrl: 'https://xinchunqifu.onrender.com',
+        let serverConfig = {
+            serverUrl: 'https://xinchunqifu.onrender.com',
             apiEndpoints: {
                 submit: '/api/donations',
                 test: '/api/test',
                 stats: '/api/stats'
             },
-            syncInterval: 5, // 分钟
             timeout: 30, // 秒
-            retryCount: 3,
-            autoSync: true
+            retryCount: 3
         };
         
         // 服务器状态
         let serverConnected = false;
         let syncInProgress = false;
-        let autoSyncTimer = null;
         
         // 操作日志
         let operationLogs = [];
@@ -880,27 +640,6 @@
             updateSummary();
             setupEventListeners();
             testServerConnection();
-            
-            // 添加键盘快捷键
-            document.addEventListener('keydown', function(e) {
-                // Ctrl+S 保存
-                if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-                    e.preventDefault();
-                    document.getElementById('saveData').click();
-                }
-                
-                // Ctrl+N 添加新行
-                if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
-                    e.preventDefault();
-                    document.getElementById('addRow').click();
-                }
-                
-                // Ctrl+E 导出
-                if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
-                    e.preventDefault();
-                    document.getElementById('exportCSV').click();
-                }
-            });
         });
         
         // 加载配置
@@ -912,7 +651,6 @@
                     serverConfig = { ...serverConfig, ...parsedConfig };
                     document.getElementById('serverUrl').value = serverConfig.serverUrl;
                     document.getElementById('apiSubmit').value = serverConfig.apiEndpoints.submit || '/api/donations';
-                    document.getElementById('syncInterval').value = serverConfig.syncInterval || 5;
                     document.getElementById('timeout').value = serverConfig.timeout || 30;
                     document.getElementById('retryCount').value = serverConfig.retryCount || 3;
                     
@@ -927,7 +665,6 @@
         function saveConfig() {
             serverConfig.serverUrl = document.getElementById('serverUrl').value.trim();
             serverConfig.apiEndpoints.submit = document.getElementById('apiSubmit').value.trim() || '/api/donations';
-            serverConfig.syncInterval = parseInt(document.getElementById('syncInterval').value) || 5;
             serverConfig.timeout = parseInt(document.getElementById('timeout').value) || 30;
             serverConfig.retryCount = parseInt(document.getElementById('retryCount').value) || 3;
             
@@ -937,9 +674,6 @@
             } catch (e) {
                 addLog('保存配置时出错: ' + e.message, 'error');
             }
-            
-            // 重启自动同步
-            setupAutoSync();
             
             hideModal();
             
@@ -1000,20 +734,14 @@
         // 更新日志显示
         function updateLogDisplay() {
             const logContent = document.getElementById('logContent');
-            const logCount = document.getElementById('logCount');
             logContent.innerHTML = '';
             
             operationLogs.forEach(log => {
                 const logDiv = document.createElement('div');
                 logDiv.className = `log-entry log-${log.type}`;
-                logDiv.innerHTML = `
-                    <span class="log-time">${log.timestamp}</span>
-                    <span>${log.message}</span>
-                `;
+                logDiv.textContent = `[${log.timestamp}] ${log.message}`;
                 logContent.appendChild(logDiv);
             });
-            
-            logCount.textContent = operationLogs.length;
         }
         
         // 测试服务器连接
@@ -1027,15 +755,19 @@
             updateServerStatus('connecting', '连接中...');
             addLog(`正在连接到服务器: ${serverUrl}`, 'info');
             
+            // 创建AbortController用于超时控制
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), (serverConfig.timeout || 30) * 1000);
+            
             try {
-                // 先尝试连接根路径
+                // 尝试连接根路径
                 const testUrl = `${serverUrl}`;
                 const response = await fetch(testUrl, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    signal: AbortSignal.timeout((serverConfig.timeout || 30) * 1000)
+                    signal: controller.signal
                 });
                 
                 if (response.ok) {
@@ -1046,19 +778,22 @@
                     
                     // 更新服务器信息
                     document.getElementById('connectionInfo').innerHTML = 
-                        `<i class="fas fa-check-circle" style="color:#28a745"></i> 连接正常 | 服务器地址: ${serverUrl}`;
+                        `<i class="fas fa-check-circle"></i> 连接正常 | 服务器地址: ${serverUrl}`;
                     
                     // 保存配置
                     localStorage.setItem('donationServerConfig', JSON.stringify(serverConfig));
-                    
-                    // 设置自动同步
-                    setupAutoSync();
                     
                 } else {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
             } catch (error) {
+                // 清除之前的超时计时器
+                clearTimeout(timeoutId);
+                
                 // 如果根路径失败，尝试连接健康检查端点
+                const healthController = new AbortController();
+                const healthTimeoutId = setTimeout(() => healthController.abort(), (serverConfig.timeout || 30) * 1000);
+                
                 try {
                     const healthUrl = `${serverUrl}/health`;
                     const response = await fetch(healthUrl, {
@@ -1066,7 +801,7 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        signal: AbortSignal.timeout((serverConfig.timeout || 30) * 1000)
+                        signal: healthController.signal
                     });
                     
                     if (response.ok) {
@@ -1077,25 +812,27 @@
                         addLog('服务器连接成功', 'success');
                         
                         document.getElementById('connectionInfo').innerHTML = 
-                            `<i class="fas fa-check-circle" style="color:#28a745"></i> 连接正常 | 服务器状态: ${data.status || '健康'}`;
+                            `<i class="fas fa-check-circle"></i> 连接正常 | 服务器状态: ${data.status || '健康'}`;
                         
                         // 保存配置
                         localStorage.setItem('donationServerConfig', JSON.stringify(serverConfig));
                         
-                        // 设置自动同步
-                        setupAutoSync();
                     } else {
                         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                     }
                 } catch (secondError) {
                     serverConnected = false;
-                    updateServerStatus('disconnected', `连接失败: ${secondError.message}`);
+                    updateServerStatus('disconnected', `连接失败: ${secondError.name === 'AbortError' ? '请求超时' : secondError.message}`);
                     disableServerButtons();
-                    addLog(`服务器连接失败: ${secondError.message}`, 'error');
+                    addLog(`服务器连接失败: ${secondError.name === 'AbortError' ? '请求超时' : secondError.message}`, 'error');
                     
                     document.getElementById('connectionInfo').innerHTML = 
-                        `<i class="fas fa-times-circle" style="color:#dc3545"></i> 连接失败: ${secondError.message}`;
+                        `<i class="fas fa-times-circle"></i> 连接失败: ${secondError.name === 'AbortError' ? '请求超时' : secondError.message}`;
+                } finally {
+                    clearTimeout(healthTimeoutId);
                 }
+            } finally {
+                clearTimeout(timeoutId);
             }
         }
         
@@ -1104,17 +841,10 @@
             const statusElement = document.getElementById('serverStatus');
             statusElement.className = `server-status status-${status}`;
             
-            const indicator = statusElement.querySelector('.status-indicator');
-            indicator.className = `status-indicator ${status}`;
-            
             const icon = status === 'connected' ? 'fa-check-circle' : 
                         status === 'connecting' ? 'fa-sync fa-spin' : 'fa-times-circle';
             
-            statusElement.innerHTML = `
-                <span class="status-indicator ${status}"></span>
-                <i class="fas ${icon}"></i> 
-                <span>${message}</span>
-            `;
+            statusElement.innerHTML = `<i class="fas ${icon}"></i> ${message}`;
         }
         
         // 启用服务器相关按钮
@@ -1128,28 +858,6 @@
         function disableServerButtons() {
             document.getElementById('syncData').disabled = true;
             document.getElementById('submitAll').disabled = true;
-        }
-        
-        // 设置自动同步
-        function setupAutoSync() {
-            // 清除现有定时器
-            if (autoSyncTimer) {
-                clearInterval(autoSyncTimer);
-                autoSyncTimer = null;
-            }
-            
-            // 如果启用了自动同步且间隔大于0
-            if (serverConfig.autoSync && serverConfig.syncInterval > 0 && serverConnected) {
-                const interval = serverConfig.syncInterval * 60 * 1000; // 转换为毫秒
-                autoSyncTimer = setInterval(() => {
-                    if (!syncInProgress) {
-                        addLog('自动同步触发', 'info');
-                        syncToServer();
-                    }
-                }, interval);
-                
-                addLog(`自动同步已启用，每${serverConfig.syncInterval}分钟同步一次`, 'info');
-            }
         }
         
         // 同步数据到服务器（只同步未提交的数据）
@@ -1166,6 +874,10 @@
             
             syncInProgress = true;
             document.getElementById('syncData').innerHTML = '<i class="fas fa-spinner fa-spin"></i> 同步中...';
+            
+            // 创建AbortController用于超时控制
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), (serverConfig.timeout || 30) * 1000);
             
             try {
                 // 获取所有数据
@@ -1192,7 +904,7 @@
                 updateSyncDetails(`准备同步 ${dataToSubmit.length} 条数据...`);
                 
                 // 提交数据
-                const result = await submitDataToServer(dataToSubmit);
+                const result = await submitDataToServer(dataToSubmit, controller);
                 
                 if (result && result.success) {
                     // 更新已提交的ID
@@ -1214,11 +926,12 @@
                 }
                 
             } catch (error) {
-                addLog(`同步失败: ${error.message}`, 'error');
+                addLog(`同步失败: ${error.name === 'AbortError' ? '请求超时' : error.message}`, 'error');
                 updateSyncStatus('同步失败');
-                updateSyncDetails(`同步失败: ${error.message}`, 'error');
+                updateSyncDetails(`同步失败: ${error.name === 'AbortError' ? '请求超时' : error.message}`, 'error');
             } finally {
                 syncInProgress = false;
+                clearTimeout(timeoutId);
                 document.getElementById('syncData').innerHTML = '<i class="fas fa-sync-alt"></i> 同步到服务器';
             }
         }
@@ -1237,6 +950,10 @@
             syncInProgress = true;
             document.getElementById('submitAll').innerHTML = '<i class="fas fa-spinner fa-spin"></i> 提交中...';
             
+            // 创建AbortController用于超时控制
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), (serverConfig.timeout || 30) * 1000);
+            
             try {
                 const allData = getAllData();
                 if (allData.length === 0) {
@@ -1249,7 +966,7 @@
                 updateSyncDetails(`准备提交 ${allData.length} 条数据...`);
                 
                 // 使用批量提交接口
-                const result = await submitBatchToServer(allData);
+                const result = await submitBatchToServer(allData, controller);
                 
                 if (result && result.success) {
                     // 清除本地已提交ID记录，重新记录
@@ -1269,17 +986,18 @@
                 }
                 
             } catch (error) {
-                addLog(`提交失败: ${error.message}`, 'error');
+                addLog(`提交失败: ${error.name === 'AbortError' ? '请求超时' : error.message}`, 'error');
                 updateSyncStatus('提交失败');
-                updateSyncDetails(`提交失败: ${error.message}`, 'error');
+                updateSyncDetails(`提交失败: ${error.name === 'AbortError' ? '请求超时' : error.message}`, 'error');
             } finally {
                 syncInProgress = false;
-                document.getElementById('submitAll').innerHTML = '<i class="fas fa-cloud-upload-alt"></i> 提交所有数据';
+                clearTimeout(timeoutId);
+                document.getElementById('submitAll').innerHTML = '<i class="fas fa-cloud-upload-alt"></i> 提交所有数据到服务器';
             }
         }
         
         // 提交数据到服务器（单个或批量）
-        async function submitDataToServer(data) {
+        async function submitDataToServer(data, controller) {
             const serverUrl = serverConfig.serverUrl;
             const apiEndpoint = serverConfig.apiEndpoints.submit;
             const url = `${serverUrl}${apiEndpoint}`;
@@ -1305,7 +1023,7 @@
                         timestamp: new Date().toISOString(),
                         deviceId: getDeviceId()
                     }),
-                    signal: AbortSignal.timeout((serverConfig.timeout || 30) * 1000)
+                    signal: controller ? controller.signal : null
                 });
                 
                 if (!response.ok) {
@@ -1321,6 +1039,11 @@
                     addLog(`第${i + 1}次重试...`, 'info');
                     try {
                         await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
+                        
+                        // 创建新的AbortController用于重试
+                        const retryController = new AbortController();
+                        const retryTimeoutId = setTimeout(() => retryController.abort(), (serverConfig.timeout || 30) * 1000);
+                        
                         const response = await fetch(url, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -1328,8 +1051,11 @@
                                 data, 
                                 batchId: generateBatchId(),
                                 retryAttempt: i + 1 
-                            })
+                            }),
+                            signal: retryController.signal
                         });
+                        
+                        clearTimeout(retryTimeoutId);
                         
                         if (response.ok) {
                             return await response.json();
@@ -1345,8 +1071,8 @@
         }
         
         // 批量提交数据
-        async function submitBatchToServer(data) {
-            return submitDataToServer(data);
+        async function submitBatchToServer(data, controller) {
+            return submitDataToServer(data, controller);
         }
         
         // 获取所有表格数据
@@ -1471,25 +1197,23 @@
             newRow.innerHTML = `
                 <td>${rowCount}</td>
                 <td>
-                    <input type="text" class="form-control name-input" placeholder="请输入姓名" required>
-                    <div class="validation-message" id="nameError${rowCount}">姓名不能为空</div>
+                    <input type="text" class="form-control name-input" placeholder="请输入姓名">
                 </td>
                 <td>
-                    <select class="form-control project-select" required>
+                    <select class="form-control project-select">
                         <option value="">请选择护持项目</option>
                         ${projectOptions}
                     </select>
-                    <div class="validation-message" id="projectError${rowCount}">请选择护持项目</div>
                 </td>
                 <td>
-                    <textarea class="form-control method-textarea" rows="3" readonly placeholder="选择护持项目后自动填充"></textarea>
+                    <textarea class="form-control method-textarea" rows="3" readonly></textarea>
                 </td>
                 <td>
                     <div class="amount-display">-</div>
                     <div class="rmb-display">-</div>
                 </td>
                 <td>
-                    <textarea class="form-control content-textarea" rows="3" placeholder="请输入祈福内容（可选）"></textarea>
+                    <textarea class="form-control content-textarea" rows="3" placeholder="请输入祈福内容"></textarea>
                 </td>
                 <td>
                     <select class="form-control payment-select">
@@ -1499,7 +1223,7 @@
                     </select>
                 </td>
                 <td>
-                    <input type="text" class="form-control contact-input" placeholder="请输入联系人（可选）">
+                    <input type="text" class="form-control contact-input" placeholder="请输入联系人">
                 </td>
                 <td>
                     <div class="row-controls">
@@ -1515,54 +1239,23 @@
             // 绑定新行的事件
             const projectSelect = newRow.querySelector('.project-select');
             const deleteBtn = newRow.querySelector('.delete-row');
-            const nameInput = newRow.querySelector('.name-input');
             
             projectSelect.addEventListener('change', function() {
                 updateRowData(this);
-                validateField(this);
-            });
-            
-            nameInput.addEventListener('input', function() {
-                validateField(this);
-                updateSummary();
             });
             
             deleteBtn.addEventListener('click', function() {
                 deleteRow(this);
             });
             
-            // 添加输入验证
-            nameInput.addEventListener('blur', function() {
-                validateField(this);
-            });
-            
-            projectSelect.addEventListener('blur', function() {
-                validateField(this);
-            });
+            // 添加输入事件监听，实时更新统计
+            const nameInput = newRow.querySelector('.name-input');
+            nameInput.addEventListener('input', updateSummary);
             
             // 更新序号
             updateRowNumbers();
             updateSummary();
             addLog(`添加了新行 (当前共${rowCount}行)`, 'info');
-        }
-        
-        // 验证字段
-        function validateField(field) {
-            const value = field.value.trim();
-            const row = field.closest('tr');
-            const rowIndex = Array.from(row.parentNode.children).indexOf(row) + 1;
-            const fieldName = field.classList.contains('name-input') ? 'name' : 'project';
-            const errorElement = document.getElementById(`${fieldName}Error${rowIndex}`);
-            
-            if (!value) {
-                field.classList.add('validation-error');
-                if (errorElement) errorElement.style.display = 'block';
-                return false;
-            } else {
-                field.classList.remove('validation-error');
-                if (errorElement) errorElement.style.display = 'none';
-                return true;
-            }
         }
         
         // 更新行数据（根据选择的护持项目）
@@ -1587,7 +1280,7 @@
                     const amountRMB = amountTWD / EXCHANGE_RATE;
                     
                     amountDisplay.textContent = `NT$ ${amountTWD.toLocaleString()}`;
-                    rmbDisplay.textContent = `≈ ¥ ${amountRMB.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                    rmbDisplay.textContent = `≈ ¥ ${amountRMB.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}`;
                 }
                 
                 addLog(`已选择项目: ${project}`, 'info');
@@ -1649,30 +1342,11 @@
             
             document.getElementById('totalRecords').textContent = totalRecords;
             document.getElementById('totalAmountTWD').textContent = `NT$ ${totalAmountTWD.toLocaleString()}`;
-            document.getElementById('totalAmountRMB').textContent = `¥ ${(totalAmountTWD / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('totalAmountRMB').textContent = `¥ ${(totalAmountTWD / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}`;
         }
         
         // 保存数据到本地存储
         function saveToLocalStorage() {
-            // 验证所有必填字段
-            let isValid = true;
-            const rows = document.querySelectorAll('#tableBody tr');
-            
-            rows.forEach(row => {
-                const nameInput = row.querySelector('.name-input');
-                const projectSelect = row.querySelector('.project-select');
-                
-                if (!validateField(nameInput) || !validateField(projectSelect)) {
-                    isValid = false;
-                }
-            });
-            
-            if (!isValid) {
-                alert('请填写所有必填字段（姓名和护持项目）！');
-                addLog('保存失败：有必填字段未填写', 'error');
-                return;
-            }
-            
             const tableData = getAllData();
             
             if (tableData.length === 0) {
