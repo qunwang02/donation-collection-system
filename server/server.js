@@ -103,35 +103,6 @@ async function startServer() {
       console.log(`🔧 环境: ${config.server.env}`);
     });
     
-    // 优雅关闭
-    const gracefulShutdown = async () => {
-      console.log('🛑 收到关闭信号，正在优雅关闭...');
-      
-      server.close(async () => {
-        console.log('✅ HTTP服务器已关闭');
-        
-        await database.disconnect();
-        console.log('✅ 数据库连接已关闭');
-        
-        process.exit(0);
-      });
-      
-      // 如果10秒后还没关闭，强制退出
-      setTimeout(() => {
-        console.error('❌ 强制关闭服务器');
-        process.exit(1);
-      }, 10000);
-    };
-    
-    process.on('SIGTERM', gracefulShutdown);
-    process.on('SIGINT', gracefulShutdown);
-    
-  } catch (error) {
-    console.error('❌ 启动服务器失败:', error);
-    process.exit(1);
-  }
-}
-
 startServer();
 
 module.exports = app;
