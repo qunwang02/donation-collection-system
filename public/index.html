@@ -861,7 +861,7 @@
         }
         
         // 同步数据到服务器（只同步未提交的数据）
-        async function syncToServer() {
+              async function syncToServer() {
             if (!serverConnected) {
                 addLog('服务器未连接，无法同步', 'error');
                 return;
@@ -889,7 +889,7 @@
                 }
                 
                 // 获取已提交的数据ID（如果有）
-                const submittedIds = JSON.parse(localStorage.getItem('submittedIds') || '[]');
+                const submittedIds = JSON.parse(localStorage.getItem('submittedIdsMobile') || '[]');
                 
                 // 筛选未提交的数据
                 const dataToSubmit = allData.filter(item => !submittedIds.includes(item.localId));
@@ -910,7 +910,7 @@
                     // 更新已提交的ID
                     const newIds = dataToSubmit.map(item => item.localId);
                     const updatedSubmittedIds = [...submittedIds, ...newIds];
-                    localStorage.setItem('submittedIds', JSON.stringify(updatedSubmittedIds));
+                    localStorage.setItem('submittedIdsMobile', JSON.stringify(updatedSubmittedIds));
                     
                     // 更新同步状态
                     updateSyncStatus(`${result.submittedCount || dataToSubmit.length}条数据已同步`);
@@ -937,7 +937,7 @@
         }
         
         // 提交所有数据到服务器（强制提交）
-        async function submitAllToServer() {
+               async function submitAllToServer() {
             if (!serverConnected) {
                 addLog('服务器未连接，无法提交', 'error');
                 return;
@@ -971,7 +971,7 @@
                 if (result && result.success) {
                     // 清除本地已提交ID记录，重新记录
                     const submittedIds = allData.map(item => item.localId);
-                    localStorage.setItem('submittedIds', JSON.stringify(submittedIds));
+                    localStorage.setItem('submittedIdsMobile', JSON.stringify(submittedIds));
                     
                     updateSyncStatus(`已提交${result.submittedCount || allData.length}条数据`);
                     updateSyncDetails(`成功提交 ${result.submittedCount || allData.length} 条数据到服务器`, 'success');
@@ -992,12 +992,12 @@
             } finally {
                 syncInProgress = false;
                 clearTimeout(timeoutId);
-                document.getElementById('submitAll').innerHTML = '<i class="fas fa-cloud-upload-alt"></i> 提交所有数据到服务器';
+                document.getElementById('submitAll').innerHTML = '<i class="fas fa-cloud-upload-alt"></i> 提交所有数据';
             }
         }
         
         // 提交数据到服务器（单个或批量）
-        async function submitDataToServer(data, controller) {
+       async function submitDataToServer(data, controller) {
             const serverUrl = serverConfig.serverUrl;
             const apiEndpoint = serverConfig.apiEndpoints.submit;
             const url = `${serverUrl}${apiEndpoint}`;
