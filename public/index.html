@@ -575,10 +575,10 @@
     </div>
 
     <script>
-        // 汇率设置
+ // 汇率设置
         const EXCHANGE_RATE = 4.2;
         
-       // 服务器配置（可从本地存储加载）
+        // 服务器配置（可从本地存储加载）
         let serverConfig = {
             serverUrl: 'https://donation-collection-system.onrender.com',
             apiEndpoints: {
@@ -636,15 +636,33 @@
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
             loadConfig();
-            initializeTable();
+            initializeForms();
             updateSummary();
             setupEventListeners();
             testServerConnection();
+            
+            // 检查是否有保存的数据
+            checkSavedData();
         });
+        
+        // 检查是否有保存的数据
+        function checkSavedData() {
+            const savedData = localStorage.getItem('donationDataMobile');
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    if (data.length > 0) {
+                        addLog(`检测到 ${data.length} 条保存的数据`, 'info');
+                    }
+                } catch (e) {
+                    // 忽略错误
+                }
+            }
+        }
         
         // 加载配置
         function loadConfig() {
-            const savedConfig = localStorage.getItem('donationServerConfig');
+            const savedConfig = localStorage.getItem('donationServerConfigMobile');
             if (savedConfig) {
                 try {
                     const parsedConfig = JSON.parse(savedConfig);
@@ -669,7 +687,7 @@
             serverConfig.retryCount = parseInt(document.getElementById('retryCount').value) || 3;
             
             try {
-                localStorage.setItem('donationServerConfig', JSON.stringify(serverConfig));
+                localStorage.setItem('donationServerConfigMobile', JSON.stringify(serverConfig));
                 addLog('配置已保存', 'success');
             } catch (e) {
                 addLog('保存配置时出错: ' + e.message, 'error');
@@ -684,7 +702,7 @@
         // 设置事件监听器
         function setupEventListeners() {
             // 原有按钮事件
-            document.getElementById('addRow').addEventListener('click', addNewRow);
+            document.getElementById('addRow').addEventListener('click', addNewForm);
             document.getElementById('saveData').addEventListener('click', saveToLocalStorage);
             document.getElementById('exportCSV').addEventListener('click', exportToCSV);
             document.getElementById('loadData').addEventListener('click', loadFromLocalStorage);
@@ -702,6 +720,17 @@
             // 点击模态框外部关闭
             document.getElementById('configModal').addEventListener('click', function(e) {
                 if (e.target === this) hideModal();
+            });
+            
+            // 添加触摸事件支持
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(1px)';
+                });
+                
+                btn.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
             });
         }
         
@@ -781,7 +810,7 @@
                         `<i class="fas fa-check-circle"></i> 连接正常 | 服务器地址: ${serverUrl}`;
                     
                     // 保存配置
-                    localStorage.setItem('donationServerConfig', JSON.stringify(serverConfig));
+                    localStorage.setItem('donationServerConfigMobile', JSON.stringify(serverConfig));
                     
                 } else {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -815,7 +844,7 @@
                             `<i class="fas fa-check-circle"></i> 连接正常 | 服务器状态: ${data.status || '健康'}`;
                         
                         // 保存配置
-                        localStorage.setItem('donationServerConfig', JSON.stringify(serverConfig));
+                        localStorage.setItem('donationServerConfigMobile', JSON.stringify(serverConfig));
                         
                     } else {
                         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -889,7 +918,7 @@
                 }
                 
                 // 获取已提交的数据ID（如果有）
-                const submittedIds = JSON.parse(localStorage.getItem('submittedIds') || '[]');
+                const submittedIds = JSON.parse(localStorage.getItem('submittedIdsMobile') || '[]');
                 
                 // 筛选未提交的数据
                 const dataToSubmit = allData.filter(item => !submittedIds.includes(item.localId));
@@ -910,7 +939,7 @@
                     // 更新已提交的ID
                     const newIds = dataToSubmit.map(item => item.localId);
                     const updatedSubmittedIds = [...submittedIds, ...newIds];
-                    localStorage.setItem('submittedIds', JSON.stringify(updatedSubmittedIds));
+                    localStorage.setItem('submittedIdsMobile', JSON.stringify(updatedSubmittedIds));
                     
                     // 更新同步状态
                     updateSyncStatus(`${result.submittedCount || dataToSubmit.length}条数据已同步`);
@@ -971,7 +1000,7 @@
                 if (result && result.success) {
                     // 清除本地已提交ID记录，重新记录
                     const submittedIds = allData.map(item => item.localId);
-                    localStorage.setItem('submittedIds', JSON.stringify(submittedIds));
+                    localStorage.setItem('submittedIdsMobile', JSON.stringify(submittedIds));
                     
                     updateSyncStatus(`已提交${result.submittedCount || allData.length}条数据`);
                     updateSyncDetails(`成功提交 ${result.submittedCount || allData.length} 条数据到服务器`, 'success');
@@ -992,7 +1021,7 @@
             } finally {
                 syncInProgress = false;
                 clearTimeout(timeoutId);
-                document.getElementById('submitAll').innerHTML = '<i class="fas fa-cloud-upload-alt"></i> 提交所有数据到服务器';
+                document.getElementById('submitAll').innerHTML = '<i class="fas fa-cloud-upload-alt"></i> 提交所有数据';
             }
         }
         
@@ -1075,19 +1104,19 @@
             return submitDataToServer(data, controller);
         }
         
-        // 获取所有表格数据
+        // 获取所有表单数据
         function getAllData() {
             const tableData = [];
-            const rows = document.querySelectorAll('#tableBody tr');
+            const formCards = document.querySelectorAll('.form-card');
             
-            rows.forEach((row, index) => {
-                const name = row.querySelector('.name-input').value.trim();
-                const project = row.querySelector('.project-select').value;
-                const method = row.querySelector('.method-textarea').value;
-                const amount = row.querySelector('.amount-display').textContent;
-                const content = row.querySelector('.content-textarea').value.trim();
-                const payment = row.querySelector('.payment-select').value;
-                const contact = row.querySelector('.contact-input').value.trim();
+            formCards.forEach((card, index) => {
+                const name = card.querySelector('.name-input').value.trim();
+                const project = card.querySelector('.project-select').value;
+                const method = card.querySelector('.method-textarea').value;
+                const amount = card.querySelector('.amount-display').textContent;
+                const content = card.querySelector('.content-textarea').value.trim();
+                const payment = card.querySelector('.payment-select').value;
+                const contact = card.querySelector('.contact-input').value.trim();
                 
                 if (name && project) {
                     tableData.push({
@@ -1100,7 +1129,7 @@
                         contact,
                         amountTWD: extractAmountTWD(amount),
                         amountRMB: extractAmountRMB(amount),
-                        localId: generateLocalIdForRow(row, index),
+                        localId: card.dataset.id || generateLocalId(),
                         createTime: new Date().toISOString(),
                         rowIndex: index + 1
                     });
@@ -1133,32 +1162,22 @@
             return 0;
         }
         
-        // 为行生成本地ID
-        function generateLocalIdForRow(row, index) {
-            const name = row.querySelector('.name-input').value.trim();
-            const project = row.querySelector('.project-select').value;
-            const timestamp = new Date().getTime();
-            const namePart = name ? name.substring(0, 3) : 'noname';
-            const projectPart = project ? project.substring(0, 5) : 'noproj';
-            return `local_${timestamp}_${index}_${namePart}_${projectPart}`.replace(/\s+/g, '_');
-        }
-        
         // 生成本地ID
         function generateLocalId() {
-            return `local_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`;
+            return `mobile_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`;
         }
         
         // 生成批次ID
         function generateBatchId() {
-            return `batch_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`;
+            return `mobile_batch_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`;
         }
         
         // 获取设备ID
         function getDeviceId() {
-            let deviceId = localStorage.getItem('deviceId');
+            let deviceId = localStorage.getItem('deviceIdMobile');
             if (!deviceId) {
-                deviceId = `device_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`;
-                localStorage.setItem('deviceId', deviceId);
+                deviceId = `mobile_device_${new Date().getTime()}_${Math.random().toString(36).substr(2, 9)}`;
+                localStorage.setItem('deviceIdMobile', deviceId);
             }
             return deviceId;
         }
@@ -1175,98 +1194,138 @@
             detailsElement.className = `sync-status log-${type}`;
         }
         
-        // 初始化表格，添加第一行
-        function initializeTable() {
-            const tableBody = document.getElementById('tableBody');
-            tableBody.innerHTML = '';
-            addNewRow();
-            addLog('表格初始化完成', 'info');
+        // 初始化表单
+        function initializeForms() {
+            const formContainer = document.getElementById('formContainer');
+            const emptyState = document.getElementById('emptyState');
+            
+            // 隐藏空状态
+            emptyState.style.display = 'none';
+            
+            // 添加第一个表单
+            addNewForm();
+            
+            addLog('手机版表单初始化完成', 'info');
         }
         
-        // 添加新行
-        function addNewRow() {
-            const tableBody = document.getElementById('tableBody');
-            const rowCount = tableBody.children.length + 1;
+        // 添加新表单
+        function addNewForm() {
+            const formContainer = document.getElementById('formContainer');
+            const emptyState = document.getElementById('emptyState');
+            
+            // 隐藏空状态
+            emptyState.style.display = 'none';
+            
+            const formCount = document.querySelectorAll('.form-card').length + 1;
+            const localId = generateLocalId();
             
             // 生成项目选项
             const projectOptions = Object.keys(projectData).map(project => 
                 `<option value="${project}">${project}</option>`
             ).join('');
             
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td>${rowCount}</td>
-                <td>
-                    <input type="text" class="form-control name-input" placeholder="请输入姓名">
-                </td>
-                <td>
-                    <select class="form-control project-select">
+            const formCard = document.createElement('div');
+            formCard.className = 'form-card';
+            formCard.dataset.id = localId;
+            formCard.innerHTML = `
+                <div class="form-card-header">
+                    <div class="form-card-title">记录 #${formCount}</div>
+                    <button class="delete-card-btn delete-form" title="删除此记录">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="form-row">
+                    <label class="form-label required">姓名</label>
+                    <input type="text" class="form-input name-input" placeholder="请输入姓名" required>
+                </div>
+                <div class="form-row">
+                    <label class="form-label required">护持项目</label>
+                    <select class="form-input project-select" required>
                         <option value="">请选择护持项目</option>
                         ${projectOptions}
                     </select>
-                </td>
-                <td>
-                    <textarea class="form-control method-textarea" rows="3" readonly></textarea>
-                </td>
-                <td>
+                </div>
+                <div class="form-row">
+                    <label class="form-label">祈福方式</label>
+                    <textarea class="form-input method-textarea" readonly></textarea>
+                </div>
+                <div class="form-row">
+                    <label class="form-label">护持金额</label>
                     <div class="amount-display">-</div>
                     <div class="rmb-display">-</div>
-                </td>
-                <td>
-                    <textarea class="form-control content-textarea" rows="3" placeholder="请输入祈福内容"></textarea>
-                </td>
-                <td>
-                    <select class="form-control payment-select">
+                </div>
+                <div class="form-row">
+                    <label class="form-label">祈福内容</label>
+                    <textarea class="form-input content-textarea" placeholder="请输入祈福内容"></textarea>
+                </div>
+                <div class="form-row">
+                    <label class="form-label">是否缴费</label>
+                    <select class="form-input payment-select">
                         <option value="未缴费">未缴费</option>
                         <option value="已缴费">已缴费</option>
                         <option value="随喜">随喜</option>
                     </select>
-                </td>
-                <td>
-                    <input type="text" class="form-control contact-input" placeholder="请输入联系人">
-                </td>
-                <td>
-                    <div class="row-controls">
-                        <button class="btn btn-danger btn-sm delete-row" title="删除此行">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </td>
+                </div>
+                <div class="form-row">
+                    <label class="form-label">联系人</label>
+                    <input type="text" class="form-input contact-input" placeholder="请输入联系人">
+                </div>
             `;
             
-            tableBody.appendChild(newRow);
+            formContainer.appendChild(formCard);
             
-            // 绑定新行的事件
-            const projectSelect = newRow.querySelector('.project-select');
-            const deleteBtn = newRow.querySelector('.delete-row');
+            // 绑定事件
+            bindFormEvents(formCard);
+            
+            // 更新表单标题
+            updateFormTitles();
+            updateSummary();
+            addLog(`添加了新记录 (当前共${formCount}条)`, 'info');
+            
+            // 滚动到新表单
+            setTimeout(() => {
+                formCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+        
+        // 绑定表单事件
+        function bindFormEvents(formCard) {
+            const projectSelect = formCard.querySelector('.project-select');
+            const deleteBtn = formCard.querySelector('.delete-form');
             
             projectSelect.addEventListener('change', function() {
-                updateRowData(this);
+                updateFormData(this);
             });
             
             deleteBtn.addEventListener('click', function() {
-                deleteRow(this);
+                deleteForm(this);
             });
             
             // 添加输入事件监听，实时更新统计
-            const nameInput = newRow.querySelector('.name-input');
+            const nameInput = formCard.querySelector('.name-input');
             nameInput.addEventListener('input', updateSummary);
-            
-            // 更新序号
-            updateRowNumbers();
-            updateSummary();
-            addLog(`添加了新行 (当前共${rowCount}行)`, 'info');
         }
         
-        // 更新行数据（根据选择的护持项目）
-        function updateRowData(selectElement) {
-            const row = selectElement.closest('tr');
+        // 更新表单标题
+        function updateFormTitles() {
+            const formCards = document.querySelectorAll('.form-card');
+            formCards.forEach((card, index) => {
+                const titleElement = card.querySelector('.form-card-title');
+                if (titleElement) {
+                    titleElement.textContent = `记录 #${index + 1}`;
+                }
+            });
+        }
+        
+        // 更新表单数据（根据选择的护持项目）
+        function updateFormData(selectElement) {
+            const formCard = selectElement.closest('.form-card');
             const project = selectElement.value;
             
             if (project && projectData[project]) {
-                const methodTextarea = row.querySelector('.method-textarea');
-                const amountDisplay = row.querySelector('.amount-display');
-                const rmbDisplay = row.querySelector('.rmb-display');
+                const methodTextarea = formCard.querySelector('.method-textarea');
+                const amountDisplay = formCard.querySelector('.amount-display');
+                const rmbDisplay = formCard.querySelector('.rmb-display');
                 
                 // 更新祈福方式
                 methodTextarea.value = projectData[project].method;
@@ -1274,75 +1333,84 @@
                 // 更新金额显示
                 if (projectData[project].amount === "随喜") {
                     amountDisplay.textContent = "随喜";
-                    rmbDisplay.textContent = "随喜";
+                    if (rmbDisplay) rmbDisplay.textContent = "随喜";
                 } else {
                     const amountTWD = parseInt(projectData[project].amount);
                     const amountRMB = amountTWD / EXCHANGE_RATE;
                     
                     amountDisplay.textContent = `NT$ ${amountTWD.toLocaleString()}`;
-                    rmbDisplay.textContent = `≈ ¥ ${amountRMB.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}`;
+                    if (rmbDisplay) {
+                        rmbDisplay.textContent = `≈ ¥ ${amountRMB.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}`;
+                    }
                 }
                 
                 addLog(`已选择项目: ${project}`, 'info');
             } else {
                 // 清空数据
-                row.querySelector('.method-textarea').value = '';
-                row.querySelector('.amount-display').textContent = '-';
-                row.querySelector('.rmb-display').textContent = '-';
+                formCard.querySelector('.method-textarea').value = '';
+                formCard.querySelector('.amount-display').textContent = '-';
+                const rmbDisplay = formCard.querySelector('.rmb-display');
+                if (rmbDisplay) rmbDisplay.textContent = '-';
             }
             
             updateSummary();
         }
         
-        // 删除行
-        function deleteRow(buttonElement) {
-            const row = buttonElement.closest('tr');
-            const tableBody = document.getElementById('tableBody');
+        // 删除表单
+        function deleteForm(buttonElement) {
+            const formCard = buttonElement.closest('.form-card');
+            const formContainer = document.getElementById('formContainer');
+            const formCards = document.querySelectorAll('.form-card');
             
-            // 至少保留一行
-            if (tableBody.children.length > 1) {
-                row.remove();
-                updateRowNumbers();
+            // 至少保留一个表单
+            if (formCards.length > 1) {
+                formCard.remove();
+                updateFormTitles();
                 updateSummary();
-                addLog('删除了一行数据', 'info');
+                addLog('删除了一条记录', 'info');
             } else {
-                alert("表格至少需要保留一行！");
-                addLog('尝试删除最后一行被阻止', 'warning');
+                // 如果是最后一个表单，清空内容而不是删除
+                const emptyState = document.getElementById('emptyState');
+                emptyState.style.display = 'block';
+                formCard.style.display = 'none';
+                updateSummary();
+                addLog('清空了最后一条记录', 'info');
             }
-        }
-        
-        // 更新行号
-        function updateRowNumbers() {
-            const rows = document.querySelectorAll('#tableBody tr');
-            rows.forEach((row, index) => {
-                row.querySelector('td:first-child').textContent = index + 1;
-            });
+            
+            // 如果所有表单都被删除/隐藏，显示空状态
+            const visibleForms = document.querySelectorAll('.form-card[style*="display: none"]');
+            if (visibleForms.length === formCards.length) {
+                const emptyState = document.getElementById('emptyState');
+                emptyState.style.display = 'block';
+            }
         }
         
         // 更新数据统计
         function updateSummary() {
-            const rows = document.querySelectorAll('#tableBody tr');
-            let totalRecords = 0;
+            const allData = getAllData();
+            let totalRecords = allData.length;
             let totalAmountTWD = 0;
             
-            rows.forEach(row => {
-                const projectSelect = row.querySelector('.project-select');
-                const nameInput = row.querySelector('.name-input');
-                
-                // 只统计有姓名和已选择项目的行
-                if (nameInput.value.trim() && projectSelect.value) {
-                    totalRecords++;
-                    
-                    const project = projectSelect.value;
-                    if (projectData[project] && projectData[project].amount !== "随喜") {
-                        totalAmountTWD += parseInt(projectData[project].amount);
-                    }
+            allData.forEach(item => {
+                if (item.amountTWD) {
+                    totalAmountTWD += item.amountTWD;
                 }
             });
             
             document.getElementById('totalRecords').textContent = totalRecords;
             document.getElementById('totalAmountTWD').textContent = `NT$ ${totalAmountTWD.toLocaleString()}`;
             document.getElementById('totalAmountRMB').textContent = `¥ ${(totalAmountTWD / EXCHANGE_RATE).toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})}`;
+            
+            // 更新空状态显示
+            const emptyState = document.getElementById('emptyState');
+            const formCards = document.querySelectorAll('.form-card');
+            const visibleForms = Array.from(formCards).filter(card => card.style.display !== 'none');
+            
+            if (visibleForms.length === 0 && formCards.length > 0) {
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+            }
         }
         
         // 保存数据到本地存储
@@ -1356,7 +1424,7 @@
             }
             
             try {
-                localStorage.setItem('donationData', JSON.stringify(tableData));
+                localStorage.setItem('donationDataMobile', JSON.stringify(tableData));
                 const msg = `成功保存 ${tableData.length} 条记录到本地存储！`;
                 alert(msg);
                 addLog(msg, 'success');
@@ -1369,7 +1437,7 @@
         
         // 从本地存储加载数据
         function loadFromLocalStorage() {
-            const savedData = localStorage.getItem('donationData');
+            const savedData = localStorage.getItem('donationDataMobile');
             
             if (!savedData) {
                 alert('本地存储中没有找到保存的数据！');
@@ -1383,19 +1451,21 @@
             
             try {
                 const tableData = JSON.parse(savedData);
-                const tableBody = document.getElementById('tableBody');
+                const formContainer = document.getElementById('formContainer');
+                const emptyState = document.getElementById('emptyState');
                 
-                // 清空当前表格
-                tableBody.innerHTML = '';
+                // 清空当前表单
+                formContainer.innerHTML = '';
+                emptyState.style.display = 'none';
                 
                 // 加载保存的数据
                 tableData.forEach((item, index) => {
-                    addNewRow();
-                    const newRow = tableBody.lastElementChild;
-                    populateRow(newRow, item);
+                    addNewForm();
+                    const newForm = document.querySelector('.form-card:last-child');
+                    populateForm(newForm, item);
                 });
                 
-                updateRowNumbers();
+                updateFormTitles();
                 updateSummary();
                 const msg = `成功加载 ${tableData.length} 条记录！`;
                 alert(msg);
@@ -1407,11 +1477,11 @@
             }
         }
         
-        // 填充行数据
-        function populateRow(row, data) {
-            if (data.name) row.querySelector('.name-input').value = data.name;
+        // 填充表单数据
+        function populateForm(form, data) {
+            if (data.name) form.querySelector('.name-input').value = data.name;
             
-            const projectSelect = row.querySelector('.project-select');
+            const projectSelect = form.querySelector('.project-select');
             if (data.project) {
                 projectSelect.value = data.project;
                 
@@ -1420,9 +1490,9 @@
                 projectSelect.dispatchEvent(event);
             }
             
-            if (data.content) row.querySelector('.content-textarea').value = data.content;
-            if (data.payment) row.querySelector('.payment-select').value = data.payment;
-            if (data.contact) row.querySelector('.contact-input').value = data.contact;
+            if (data.content) form.querySelector('.content-textarea').value = data.content;
+            if (data.payment) form.querySelector('.payment-select').value = data.payment;
+            if (data.contact) form.querySelector('.contact-input').value = data.contact;
         }
         
         // 导出为CSV文件
@@ -1462,7 +1532,7 @@
                 const link = document.createElement("a");
                 const timestamp = new Date().toISOString().slice(0,10).replace(/-/g, '');
                 link.setAttribute("href", encodedUri);
-                link.setAttribute("download", `护持项目收集表_${timestamp}_${tableData.length}条.csv`);
+                link.setAttribute("download", `护持项目收集表_手机版_${timestamp}_${tableData.length}条.csv`);
                 document.body.appendChild(link);
                 
                 // 触发下载
@@ -1486,11 +1556,19 @@
             }
             
             // 清空本地存储
-            localStorage.removeItem('donationData');
-            localStorage.removeItem('submittedIds');
+            localStorage.removeItem('donationDataMobile');
+            localStorage.removeItem('submittedIdsMobile');
             
-            // 重置表格
-            initializeTable();
+            // 重置表单
+            const formContainer = document.getElementById('formContainer');
+            const emptyState = document.getElementById('emptyState');
+            
+            formContainer.innerHTML = '';
+            emptyState.style.display = 'block';
+            
+            // 添加一个空表单
+            addNewForm();
+            
             updateSummary();
             updateSyncStatus('未同步');
             updateSyncDetails('');
